@@ -173,7 +173,7 @@ syn match cssColor contained "#[0-9A-Fa-f]\{6\}\>" contains=cssUnitDecorators
 syn region cssURL contained matchgroup=cssFunctionName start="\<url\s*(" end=")" oneline extend
 syn region cssFunction contained matchgroup=cssFunctionName start="\<\(rgb\|clip\|attr\|counter\|rect\|cubic-bezier\|steps\)\s*(" end=")" oneline  contains=cssValueInteger,cssValueNumber,cssValueLength,cssFunctionComma
 syn region cssFunction contained matchgroup=cssFunctionName start="\<\(rgba\|hsl\|hsla\|color-stop\|from\|to\)\s*(" end=")" oneline  contains=cssColor,cssValueInteger,cssValueNumber,cssValueLength,cssFunctionComma,cssFunction
-syn region cssFunction contained matchgroup=cssFunctionName start="\<\(linear-\|radial-\)\=\gradient\s*(" end=")" oneline  contains=cssColor,cssValueInteger,cssValueNumber,cssValueLength,cssFunction,cssGradientAttr,cssFunctionComma
+syn region cssFunction contained matchgroup=cssFunctionName start="\(linear-\|radial-\)\=\gradient\s*(" end=")" oneline  contains=cssColor,cssValueInteger,cssValueNumber,cssValueLength,cssFunction,cssGradientAttr,cssFunctionComma
 syn region cssFunction contained matchgroup=cssFunctionName start="\<\(matrix\(3d\)\=\|scale\(3d\|X\|Y\|Z\)\=\|translate\(3d\|X\|Y\|Z\)\=\|skew\(X\|Y\)\=\|rotate\(3d\|X\|Y\|Z\)\=\|perspective\)\s*(" end=")" oneline contains=cssValueInteger,cssValueNumber,cssValueLength,cssValueAngle,cssFunctionComma
 syn keyword cssGradientAttr contained top bottom left right cover center middle ellipse at
 syn match cssFunctionComma contained ","
@@ -184,7 +184,7 @@ syn keyword cssCommonAttr contained top bottom center stretch hidden visible
 "------------------------------------------------
 " CSS Animations
 " http://www.w3.org/TR/css3-animations/
-syn match cssAnimationProp contained "\<animation\(-\(delay\|direction\|duration\|fill-mode\|name\|play-state\|timing-function\)\)\=\>"
+syn match cssAnimationProp contained "animation\(-\(delay\|direction\|duration\|fill-mode\|name\|play-state\|timing-function\)\)\="
 
 " animation-direction attributes
 syn keyword cssAnimationAttr contained alternate reverse
@@ -198,7 +198,7 @@ syn keyword cssAnimationAttr contained running paused
 "------------------------------------------------
 "  CSS Backgrounds and Borders Module Level 3
 "  http://www.w3.org/TR/css3-background/
-syn match cssBackgroundProp contained "\<background\(-\(attachment\|clip\|color\|image\|origin\|position\|repeat\|size\)\)\=\>"
+syn match cssBackgroundProp contained "background\(-\(attachment\|clip\|color\|image\|origin\|position\|repeat\|size\)\)\="
 " background-attachment attributes
 syn keyword cssBackgroundAttr contained scroll fixed local
 
@@ -214,10 +214,10 @@ syn keyword cssBackgroundAttr contained space round
 syn keyword cssBackgroundAttr contained cover contain
 
 syn match cssBorderProp contained "\<border\(-\(top\|right\|bottom\|left\)\)\=\(-\(width\|color\|style\)\)\=\>"
-syn match cssBorderProp contained "\<border\(-\(top\|bottom\)-\(left\|right\)\)\=-radius\>"
-syn match cssBorderProp contained "\<border-image\(-\(outset\|repeat\|slice\|source\|width\)\)\=\>"
-syn match cssBorderProp contained "\<box-decoration-break\>"
-syn match cssBorderProp contained "\<box-shadow\>"
+syn match cssBorderProp contained "border\(-\(top\|bottom\)-\(left\|right\)\)\=-radius"
+syn match cssBorderProp contained "border-image\(-\(outset\|repeat\|slice\|source\|width\)\)\="
+syn match cssBorderProp contained "box-decoration-break"
+syn match cssBorderProp contained "box-shadow"
 
 " border-image attributes
 syn keyword cssBorderAttr contained stretch repeat round space fill
@@ -249,7 +249,7 @@ syn keyword cssDimensionProp contained height
 syn keyword cssDimensionProp contained width
 
 " shadow and sizing are in other property groups
-syn match cssFlexibleBoxProp contained "\<box-\(align\|direction\|flex\|ordinal-group\|orient\|pack\|shadow\|sizing\)\>"
+syn match cssFlexibleBoxProp contained "box-\(align\|direction\|flex\|ordinal-group\|orient\|pack\|shadow\|sizing\)"
 syn keyword cssFlexibleBoxAttr contained start end baseline
 syn keyword cssFlexibleBoxAttr contained reverse
 syn keyword cssFlexibleBoxAttr contained single mulitple
@@ -269,8 +269,8 @@ syn match cssFontAttr contained "\<status-bar\>"
 syn match cssFontAttr contained "\<x\{1,2\}-\(large\|small\)\>"
 
 " font-family attributes
-syn match cssFontAttr contained "\<sans\>"
-syn match cssFontAttr contained "\<\(sans-\)\=\<serif\>"
+syn match cssFontAttr contained "sans"
+syn match cssFontAttr contained "\(sans-\)\=serif"
 syn keyword cssFontAttr contained Antiqua Arial Black Book Charcoal Comic Courier Dingbats Gadget Geneva Georgia Grande Helvetica Impact Linotype Lucida MS Monaco Neue New Palatino Roboto Roman Symbol Tahoma Times Trebuchet Unicode Verdana Webdings Wingdings York Zapf
 syn keyword cssFontAttr contained cursive fantasy monospace
 
@@ -292,7 +292,7 @@ syn keyword cssFontAttr contained bold bolder lighter
 "------------------------------------------------
 
 " Webkit specific property/attributes
-syn match cssFontProp contained "\<font-smooth\>"
+syn match cssFontProp contained "font-smoothing"
 syn match cssFontAttr contained "\<\(subpixel-\)\=\antialiased\>"
 
 syn keyword cssGeneratedContentProp contained quotes crop
@@ -322,7 +322,7 @@ syn keyword cssPositioningAttr contained block compact
 syn match cssPositioningAttr contained "\<table\(-\(row-group\|\(header\|footer\)-group\|row\|column\(-group\)\=\|cell\|caption\)\)\=\>"
 syn keyword cssPositioningAttr contained left right both
 syn match cssPositioningAttr contained "\<list-item\>"
-syn match cssPositioningAttr contained "\<inline\(\-block\|-box\)\=\>"
+syn match cssPositioningAttr contained "inline\(\-block\|-box\|-stack\)\="
 syn keyword cssPositioningAttr contained static relative absolute fixed
 
 syn match cssPrintProp contained "\<page\(-break-\(before\|after\|inside\)\)\=\>"
@@ -335,7 +335,7 @@ syn keyword cssTableAttr contained fixed collapse separate show hide once always
 
 syn keyword cssTextProp contained color direction
 syn match cssTextProp "\<\(\(word\|letter\)-spacing\|text\(-\(decoration\|transform\|align\|index\|shadow\)\)\=\|vertical-align\|unicode-bidi\|line-height\)\>"
-syn match cssTextProp contained "\<text-\(justify\|outline\|warp\|align-last\|size-adjust\|rendering\|stroke\|indent\)\>"
+syn match cssTextProp contained "text-\(justify\|outline\|warp\|align-last\|size-adjust\|rendering\|stroke\|indent\|overflow\)"
 syn match cssTextProp contained "\<word-\(break\|\wrap\)\>"
 syn match cssTextProp contained "\<white-space\>"
 syn match cssTextProp contained "\<hanging-punctuation\>"
@@ -357,13 +357,13 @@ syn match cssTextAttr contained "\<break-all\>"
 syn match cssTextAttr contained "\<break-word\>"
 syn keyword cssTextAttr contained hyphenate
 
-syn match cssTransformProp contained "\<transform\(-\(origin\|style\)\)\=\>"
-syn match cssTransformProp contained "\<perspective\(-origin\)\=\>"
-syn match cssTransformProp contained "\<backface-visibility\>"
+syn match cssTransformProp contained "transform\(-\(origin\|style\)\)\="
+syn match cssTransformProp contained "perspective\(-origin\)\="
+syn match cssTransformProp contained "backface-visibility"
 
 " CSS Transitions
 " http://www.w3.org/TR/css3-transitions/
-syn match cssTransitionProp contained "\<transition\(-\(delay\|duration\|property\|timing-function\)\)\=\>"
+syn match cssTransitionProp contained "transition\(-\(delay\|duration\|property\|timing-function\)\)\="
 
 " transition-time-function attributes
 syn match cssTransitionAttr contained "\<linear\(-gradient\)\@!\>"
@@ -395,7 +395,6 @@ syn match cssUIProp contained "\<outline\(-\(width\|style\|color\|offset\)\)\=\>
 syn keyword cssUIProp contained icon resiz
 syn keyword cssUIAttr contained both horizontal vertical
 
-syn match cssUIProp contained "\<text-overflow\>"
 syn keyword cssUIAttr contained clip ellipsis
 
 " Already highlighted Props:  font content
@@ -411,7 +410,7 @@ syn match cssUIProp contained '\(tap-highlight-color\|user-select\|touch-callout
 syn match cssIEUIProp contained '\(interpolation-mode\|zoom\|filter\)'
 
 " Webkit/Firebox specific properties/attributes
-syn keyword cssUIProp contained appearance
+syn match cssUIProp contained "appearance"
 syn keyword cssUIAttr contained window button field icon document menu
 
 
